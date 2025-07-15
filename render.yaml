@@ -2,5 +2,16 @@ services:
   - type: web
     name: braille-ocr-api
     env: python
-    buildCommand: ""
-    startCommand: python app.py
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn app:app --bind 0.0.0.0:5000"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: PATH
+        value: /usr/local/bin:/usr/bin:/bin:/opt/render/project/src/.venv/bin
+      - key: TESSDATA_PREFIX
+        value: /usr/share/tesseract-ocr/5/tessdata
+    preBuild:
+      - apt-get update
+      - apt-get install -y tesseract-ocr tesseract-ocr-eng libtesseract-dev
