@@ -8,8 +8,6 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
-
 brailleMap = {
     'a': '100000', 'b': '101000', 'c': '110000', 'd': '110100', 'e': '100100',
     'f': '111000', 'g': '111100', 'h': '101100', 'i': '011000', 'j': '011100',
