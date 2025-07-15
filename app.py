@@ -47,14 +47,5 @@ def ocr_image():
     except Exception as e:
         return jsonify({'error': f'OCR processing failed: {str(e)}'}), 500
 
-@app.route('/debug', methods=['GET'])
-def debug():
-    import subprocess
-    try:
-        tesseract_version = subprocess.check_output(['tesseract', '--version']).decode()
-        return jsonify({'tesseract_version': tesseract_version})
-    except subprocess.CalledProcessError as e:
-        return jsonify({'error': f'Tesseract를 찾을 수 없습니다: {str(e)}'}), 500
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
