@@ -50,7 +50,7 @@ def ocr_image():
 
     file = request.files['image']
     image = Image.open(io.BytesIO(file.read()))
-    text = image_to_string(image, lang='kor+eng')
+    text = image_to_string(image, lang='eng')
 
     braille = textToBraille(text)
 
@@ -58,6 +58,3 @@ def ocr_image():
         'originalText': text,
         'brailleBinary': braille
     })
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
