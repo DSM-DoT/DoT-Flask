@@ -1,12 +1,15 @@
-from pytesseract import *
+import os
+import pytesseract
 from PIL import Image
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import io
-import os
 
 app = Flask(__name__)
 CORS(app)
+
+# Tesseract 경로를 환경 변수에서 가져오기
+pytesseract.tesseract_cmd = os.getenv('TESSERACT_CMD', '/usr/bin/tesseract')
 
 brailleMap = {
     'a': '100000', 'b': '101000', 'c': '110000', 'd': '110100', 'e': '100100',
